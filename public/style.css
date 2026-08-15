@@ -225,86 +225,118 @@ button:hover {
     margin-top: 15px;
 }
 
-/* PC Builder & FPS Calculator Styles */
-.builder-container {
-    background: #181824;
-    border: 1px solid #2a2a3d;
-    border-radius: 12px;
-    padding: 25px;
-    margin: 30px 0;
-    color: #fff;
+/* ==========================================
+   PC Builder & FPS Calculator Styles (GÜNCEL)
+   ========================================== */
+
+/* Sekme Gizleme ve Aktiflik Kuralları */
+.tab-content {
+  display: none;
 }
 
+.tab-content.active,
+#tab-pc-builder.active {
+  display: block !important;
+}
+
+/* PC Builder Ana Konteyner */
+.builder-container {
+  background: #181824;
+  border: 1px solid #2a2a3d;
+  border-radius: 12px;
+  padding: 25px;
+  margin-top: 20px;
+  color: #fff;
+}
+
+/* 2'li Izgara Düzeni (Sol: Seçimler, Sağ: Özet) */
 .builder-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 25px;
-    margin-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+  margin-top: 20px;
 }
 
 @media (max-width: 768px) {
-    .builder-grid {
-        grid-template-columns: 1fr;
-    }
+  .builder-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
+/* Select ve Label Alanları */
 .select-group {
-    margin-bottom: 15px;
+  margin-bottom: 15px;
 }
 
 .select-group label {
-    display: block;
-    margin-bottom: 6px;
-    font-weight: 600;
-    color: #38bdf8;
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #38bdf8;
 }
 
 .select-group select {
-    width: 100%;
-    padding: 12px;
-    background: #222235;
-    border: 1px solid #3b3b54;
-    border-radius: 8px;
-    color: #fff;
-    font-size: 14px;
-    outline: none;
+  width: 100%;
+  padding: 12px;
+  background: #222235;
+  border: 1px solid #3b3b54;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
 }
 
+.select-group select:focus {
+  border-color: #0284c7;
+}
+
+/* Sağ Özet Kutusu */
 .summary-box {
-    background: #202030;
-    border: 1px solid #33334d;
-    border-radius: 10px;
-    padding: 20px;
+  background: #202030;
+  border: 1px solid #33334d;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.summary-box h3 {
+  color: #38bdf8;
+  margin-bottom: 12px;
+  font-size: 1.1rem;
 }
 
 .price-display {
-    font-size: 20px;
-    margin: 15px 0;
-    display: flex;
-    justify-content: space-between;
+  font-size: 20px;
+  margin: 15px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .price-display strong {
-    color: #22c55e;
+  color: #22c55e;
+  font-size: 1.3rem;
 }
 
+/* FPS Sonuç Kartları */
 .fps-results {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 15px;
 }
 
 .fps-card {
-    background: #14141f;
-    padding: 12px 15px;
-    border-radius: 6px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-left: 4px solid #6366f1;
+  background: #14141f;
+  padding: 12px 15px;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-left: 4px solid #6366f1;
 }
 
 .fps-card strong {
-    color: #f59e0b;
+  color: #f59e0b;
+  font-size: 1.05rem;
 }

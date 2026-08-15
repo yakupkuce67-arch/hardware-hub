@@ -67,21 +67,34 @@ async function getProtectedData() {
   }
 }
 
-// 2. Sekme Yönetimi
+// 2. Sekme Yönetimi (Tek ve Temiz Mantık)
 function setupTabs() {
   const buttons = document.querySelectorAll(".nav-btn");
-  const tabs = document.querySelectorAll(".tab-content");
 
   buttons.forEach(btn => {
     btn.addEventListener("click", () => {
+      const targetTabId = btn.getAttribute("data-target");
+
+      // Bütün butonlardan active sınıfını kaldır
       buttons.forEach(b => b.classList.remove("active"));
-      tabs.forEach(t => t.classList.remove("active"));
+      
+      // Bütün sekmeleri gizle (class ve display temizliği)
+      document.querySelectorAll(".tab-content, .content-section, .builder-container").forEach(t => {
+        t.classList.remove("active");
+        t.style.display = "none";
+      });
 
+      // Tıklanan butonu aktif yap
       btn.classList.add("active");
-      const targetTab = btn.getAttribute("data-target");
-      document.getElementById(targetTab).classList.add("active");
 
-      if (targetTab === "tab-library") renderLibrary();
+      // Hedef sekmeni aç
+      const targetTab = document.getElementById(targetTabId);
+      if (targetTab) {
+        targetTab.classList.add("active");
+        targetTab.style.display = "block";
+      }
+
+      if (targetTabId === "tab-library") renderLibrary();
     });
   });
 }
@@ -93,13 +106,18 @@ function detectHardware() {
   userHardware.ram = ram;
   userHardware.cores = cores;
 
-  document.getElementById("user-ram").innerText = `${ram} GB`;
-  document.getElementById("user-cpu").innerText = `${cores} Çekirdek`;
-  document.getElementById("user-gpu").innerText = "Tespit Edildi";
+  const ramEl = document.getElementById("user-ram");
+  const cpuEl = document.getElementById("user-cpu");
+  const gpuEl = document.getElementById("user-gpu");
+
+  if (ramEl) ramEl.innerText = `${ram} GB`;
+  if (cpuEl) cpuEl.innerText = `${cores} Çekirdek`;
+  if (gpuEl) gpuEl.innerText = "Tespit Edildi";
 }
 
 function renderLibrary() {
   const container = document.getElementById("library-list");
+  if (!container) return;
   container.innerHTML = "";
 
   games.forEach(game => {
@@ -118,6 +136,8 @@ function renderLibrary() {
 function populateDropdowns() {
   const drop1 = document.getElementById("game-dropdown-checker");
   const drop2 = document.getElementById("game-dropdown-fps");
+
+  if (!drop1 || !drop2) return;
 
   games.forEach(game => {
     drop1.add(new Option(game.name, game.id));
@@ -164,11 +184,11 @@ function calculateFPS() {
 // Ağ Hızı & Ping Ölçüm Fonksiyonu
 async function measurePing() {
   const resultText = document.getElementById("ping-result");
+  if (!resultText) return;
   resultText.innerText = "Ölçülüyor...";
 
   const startTime = performance.now();
   try {
-    // Sunucuya hafif bir istek atarak gecikmeyi hesaplıyoruz
     await fetch(`${API_URL}/protected`, { method: 'HEAD' });
     const duration = Math.round(performance.now() - startTime);
 
@@ -182,36 +202,47 @@ async function measurePing() {
   }
 }
 
+// PC Builder & FPS Hesaplama Fonksiyonu
 function calculateSystem() {
-    const cpu = document.getElementById('cpu-select');
-    const gpu = document.getElementById('gpu-select');
-    const ram = document.getElementById('ram-select');
-    const ssd = document.getElementById('ssd-select');
+  const cpu = document.getElementById('cpu-select');
+  const gpu = document.getElementById('gpu-select');
+  const ram = document.getElementById('ram-select');
+  const ssd = document.getElementById('ssd-select');
 
-    // Fiyat Hesaplama
-    const totalPrice = parseInt(cpu.value) + parseInt(gpu.value) + parseInt(ram.value) + parseInt(ssd.value);
-    document.getElementById('total-price').innerText = totalPrice.toLocaleString('tr-TR') + ' TL';
+  // Elemanlar sayfada yoksa hataya düşmesini engelle
+  if (!cpu || !gpu || !ram || !ssd) return;
 
-    // FPS Hesaplama Tabana Ekran Kartı ve İşlemci Gücünü Alıyoruz
-    const cpuFps = parseInt(cpu.options[cpu.selectedIndex].getAttribute('data-fps') || 0);
-    const gpuFps = parseInt(gpu.options[gpu.selectedIndex].getAttribute('data-fps') || 0);
+  // 1. Toplam Fiyat Hesaplama
+  const totalPrice = parseInt(cpu.value || 0) + parseInt(gpu.value || 0) + parseInt(ram.value || 0) + parseInt(ssd.value || 0);
+  const priceElem = document.getElementById('total-price');
+  if (priceElem) {
+    priceElem.innerText = totalPrice.toLocaleString('tr-TR') + ' TL';
+  }
 
-    if (cpuFps === 0 || gpuFps === 0) {
-        document.getElementById('fps-cs').innerText = '0 FPS';
-        document.getElementById('fps-gta').innerText = '0 FPS';
-        document.getElementById('fps-cyberpunk').innerText = '0 FPS';
-        return;
-    }
+  // 2. FPS Hesaplama (Seçilen seçeneklerin data-fps özniteliğini okur)
+  const cpuFps = parseInt(cpu.options[cpu.selectedIndex]?.getAttribute('data-fps') || 0);
+  const gpuFps = parseInt(gpu.options[gpu.selectedIndex]?.getAttribute('data-fps') || 0);
 
-    const baseFps = cpuFps + gpuFps;
+  const fpsCs = document.getElementById('fps-cs');
+  const fpsGta = document.getElementById('fps-gta');
+  const fpsCyber = document.getElementById('fps-cyberpunk');
 
-    // Oyun Bazlı FPS Oranları
-    document.getElementById('fps-cs').innerText = Math.round(baseFps * 2.2) + ' FPS';
-    document.getElementById('fps-gta').innerText = Math.round(baseFps * 1.2) + ' FPS';
-    document.getElementById('fps-cyberpunk').innerText = Math.round(baseFps * 0.65) + ' FPS';
+  // İşlemci veya Ekran kartı seçilmediyse 0 FPS göster
+  if (cpuFps === 0 || gpuFps === 0) {
+    if (fpsCs) fpsCs.innerText = '0 FPS';
+    if (fpsGta) fpsGta.innerText = '0 FPS';
+    if (fpsCyber) fpsCyber.innerText = '0 FPS';
+    return;
+  }
+
+  // Taban FPS hesaplayıp oyunlara göre oranla
+  const baseFps = cpuFps + gpuFps;
+
+  if (fpsCs) fpsCs.innerText = Math.round(baseFps * 2.2) + ' FPS';
+  if (fpsGta) fpsGta.innerText = Math.round(baseFps * 1.2) + ' FPS';
+  if (fpsCyber) fpsCyber.innerText = Math.round(baseFps * 0.65) + ' FPS';
 }
-
-// Başlatıcı
+// Uygulamayı Başlat
 window.addEventListener("DOMContentLoaded", () => {
   detectHardware();
   setupTabs();
