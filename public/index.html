@@ -138,82 +138,106 @@
       </section>
 
       <!-- Sekme 6: PC Builder & FPS Calculator Module -->
-      <section id="tab-pc-builder" class="tab-content builder-container">
-        <h2>🖥️ PC Sistem Toplama & FPS Tahmincisi</h2>
-        <p style="color: #94a3b8; margin-bottom: 20px;">Parçalarınızı seçin, anlık toplam fiyatı ve oyun performansını hesaplayın.</p>
+      <!-- Sekme 6: PC Builder & FPS Calculator Module -->
+<section id="tab-pc-builder" class="tab-content builder-container">
+  <h2>🖥️ PC Sistem Toplama & FPS Tahmincisi</h2>
+  <p style="color: #94a3b8; margin-bottom: 20px;">Parçalarınızı seçin, anlık toplam fiyatı ve oyun performansını hesaplayın.</p>
 
-        <div class="card">
-          <div class="builder-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-            <!-- Parça Seçim Kutuları -->
-            <div class="components-select-box">
-              <div class="form-group" style="margin-bottom: 15px;">
-                <label style="display: block; margin-bottom: 5px; color: #cbd5e1;">İşlemci (CPU):</label>
-                <select id="cpu-select" onchange="calculateSystem()" style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #334155; background: #0f172a; color: #fff;">
-                  <option value="0" data-fps="0">İşlemci Seçin</option>
-                  <option value="4200" data-fps="30">Intel Core i5-12400F - 4.200 TL</option>
-                  <option value="6500" data-fps="55">AMD Ryzen 5 7500F - 6.500 TL</option>
-                  <option value="11000" data-fps="85">AMD Ryzen 7 7800X3D - 11.000 TL</option>
-                </select>
-              </div>
+  <div class="card">
+    <div class="builder-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+      <!-- Parça Seçim Kutuları -->
+      <div class="components-select-box">
+        
+        <!-- İşlemci (CPU) -->
+        <div class="form-group" style="margin-bottom: 15px;">
+          <label style="display: block; margin-bottom: 5px; color: #cbd5e1;">İşlemci (CPU):</label>
+          <select id="cpu-select" onchange="calculateSystem()" style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #334155; background: #0f172a; color: #fff;">
+            <option value="0" data-fps="0">İşlemci Seçin</option>
+            <option value="3200" data-fps="25">AMD Ryzen 5 3600 - 3.200 TL</option>
+            <option value="4200" data-fps="35">Intel Core i5-12400F - 4.200 TL</option>
+            <option value="4800" data-fps="42">AMD Ryzen 5 5600 - 4.800 TL</option>
+            <option value="5600" data-fps="48">Intel Core i5-13400F - 5.600 TL</option>
+            <option value="6500" data-fps="60">AMD Ryzen 5 7500F - 6.500 TL</option>
+            <option value="8200" data-fps="70">Intel Core i5-14600KF - 8.200 TL</option>
+            <option value="11000" data-fps="95">AMD Ryzen 7 7800X3D - 11.000 TL</option>
+            <option value="18500" data-fps="100">AMD Ryzen 9 7950X3D - 18.500 TL</option>
+          </select>
+        </div>
 
-              <div class="form-group" style="margin-bottom: 15px;">
-                <label style="display: block; margin-bottom: 5px; color: #cbd5e1;">Ekran Kartı (GPU):</label>
-                <select id="gpu-select" onchange="calculateSystem()" style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #334155; background: #0f172a; color: #fff;">
-                  <option value="0" data-fps="0">Ekran Kartı Seçin</option>
-                  <option value="9500" data-fps="40">NVIDIA RTX 3060 12GB - 9.500 TL</option>
-                  <option value="16000" data-fps="80">NVIDIA RTX 4060 Ti - 16.000 TL</option>
-                  <option value="28000" data-fps="130">NVIDIA RTX 4070 Super - 28.000 TL</option>
-                </select>
-              </div>
+        <!-- Ekran Kartı (GPU) -->
+        <div class="form-group" style="margin-bottom: 15px;">
+          <label style="display: block; margin-bottom: 5px; color: #cbd5e1;">Ekran Kartı (GPU):</label>
+          <select id="gpu-select" onchange="calculateSystem()" style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #334155; background: #0f172a; color: #fff;">
+            <option value="0" data-fps="0">Ekran Kartı Seçin</option>
+            <option value="6800" data-fps="30">AMD Radeon RX 6600 8GB - 6.800 TL</option>
+            <option value="9500" data-fps="45">NVIDIA RTX 3060 12GB - 9.500 TL</option>
+            <option value="12500" data-fps="65">NVIDIA RTX 4060 8GB - 12.500 TL</option>
+            <option value="14000" data-fps="75">AMD Radeon RX 7600 XT 16GB - 14.000 TL</option>
+            <option value="16000" data-fps="90">NVIDIA RTX 4060 Ti 8GB - 16.000 TL</option>
+            <option value="22500" data-fps="115">AMD Radeon RX 7700 XT 12GB - 22.500 TL</option>
+            <option value="28000" data-fps="140">NVIDIA RTX 4070 Super 12GB - 28.000 TL</option>
+            <option value="36000" data-fps="175">NVIDIA RTX 4070 Ti Super 16GB - 36.000 TL</option>
+            <option value="42000" data-fps="200">NVIDIA RTX 4080 Super 16GB - 42.000 TL</option>
+            <option value="75000" data-fps="260">NVIDIA RTX 4090 24GB - 75.000 TL</option>
+          </select>
+        </div>
 
-              <div class="form-group" style="margin-bottom: 15px;">
-                <label style="display: block; margin-bottom: 5px; color: #cbd5e1;">RAM Bellek:</label>
-                <select id="ram-select" onchange="calculateSystem()" style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #334155; background: #0f172a; color: #fff;">
-                  <option value="0">RAM Seçin</option>
-                  <option value="1800">16GB (2x8GB) DDR4 3200MHz - 1.800 TL</option>
-                  <option value="3600">32GB (2x16GB) DDR5 6000MHz - 3.600 TL</option>
-                </select>
-              </div>
+        <!-- RAM Bellek -->
+        <div class="form-group" style="margin-bottom: 15px;">
+          <label style="display: block; margin-bottom: 5px; color: #cbd5e1;">RAM Bellek:</label>
+          <select id="ram-select" onchange="calculateSystem()" style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #334155; background: #0f172a; color: #fff;">
+            <option value="0">RAM Seçin</option>
+            <option value="1100">8GB DDR4 3200MHz - 1.100 TL</option>
+            <option value="1800">16GB (2x8GB) DDR4 3200MHz - 1.800 TL</option>
+            <option value="2400">16GB (1x16GB) DDR5 5600MHz - 2.400 TL</option>
+            <option value="3600">32GB (2x16GB) DDR5 6000MHz - 3.600 TL</option>
+            <option value="7200">64GB (2x32GB) DDR5 6000MHz - 7.200 TL</option>
+          </select>
+        </div>
 
-              <div class="form-group" style="margin-bottom: 15px;">
-                <label style="display: block; margin-bottom: 5px; color: #cbd5e1;">Depolama (SSD):</label>
-                <select id="ssd-select" onchange="calculateSystem()" style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #334155; background: #0f172a; color: #fff;">
-                  <option value="0">SSD Seçin</option>
-                  <option value="1600">512GB NVMe M.2 SSD - 1.600 TL</option>
-                  <option value="2900">1TB NVMe M.2 SSD - 2.900 TL</option>
-                </select>
-              </div>
-            </div>
+        <!-- Depolama (SSD) -->
+        <div class="form-group" style="margin-bottom: 15px;">
+          <label style="display: block; margin-bottom: 5px; color: #cbd5e1;">Depolama (SSD):</label>
+          <select id="ssd-select" onchange="calculateSystem()" style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #334155; background: #0f172a; color: #fff;">
+            <option value="0">SSD Seçin</option>
+            <option value="1100">256GB NVMe M.2 SSD - 1.100 TL</option>
+            <option value="1600">512GB NVMe M.2 SSD - 1.600 TL</option>
+            <option value="2900">1TB NVMe M.2 SSD (3500MB/s) - 2.900 TL</option>
+            <option value="3800">1TB Gen4 NVMe M.2 SSD (7000MB/s) - 3.800 TL</option>
+            <option value="5500">2TB Gen4 NVMe M.2 SSD (7300MB/s) - 5.500 TL</option>
+          </select>
+        </div>
+      </div>
 
-            <!-- Özet ve FPS Paneli -->
-            <div class="summary-box" style="background: #0f172a; padding: 20px; border-radius: 8px; border: 1px solid #334155;">
-              <h3 style="margin-bottom: 15px;">📊 Sistem Özeti</h3>
-              <div class="price-display" style="display: flex; justify-content: space-between; font-size: 1.2rem; margin-bottom: 15px;">
-                <span>Toplam Tutar:</span>
-                <strong id="total-price" style="color: #10b981;">0 TL</strong>
-              </div>
+      <!-- Özet ve FPS Paneli -->
+      <div class="summary-box" style="background: #0f172a; padding: 20px; border-radius: 8px; border: 1px solid #334155;">
+        <h3 style="margin-bottom: 15px;">📊 Sistem Özeti</h3>
+        <div class="price-display" style="display: flex; justify-content: space-between; font-size: 1.2rem; margin-bottom: 15px;">
+          <span>Toplam Tutar:</span>
+          <strong id="total-price" style="color: #10b981;">0 TL</strong>
+        </div>
 
-              <hr style="border-color: #334155; margin: 15px 0;">
+        <hr style="border-color: #334155; margin: 15px 0;">
 
-              <h3 style="margin-bottom: 15px;">🎮 Tahmini FPS (1080p Ultra)</h3>
-              <div class="fps-results" style="display: flex; flex-direction: column; gap: 10px;">
-                <div class="fps-card" style="background: #1e293b; padding: 10px 15px; border-radius: 6px; display: flex; justify-content: space-between; border-left: 4px solid #38bdf8;">
-                  <span>Valorant / CS2</span>
-                  <strong id="fps-cs" style="color: #f59e0b;">0 FPS</strong>
-                </div>
-                <div class="fps-card" style="background: #1e293b; padding: 10px 15px; border-radius: 6px; display: flex; justify-content: space-between; border-left: 4px solid #38bdf8;">
-                  <span>GTA V / PUBG</span>
-                  <strong id="fps-gta" style="color: #f59e0b;">0 FPS</strong>
-                </div>
-                <div class="fps-card" style="background: #1e293b; padding: 10px 15px; border-radius: 6px; display: flex; justify-content: space-between; border-left: 4px solid #38bdf8;">
-                  <span>Cyberpunk 2077</span>
-                  <strong id="fps-cyberpunk" style="color: #f59e0b;">0 FPS</strong>
-                </div>
-              </div>
-            </div>
+        <h3 style="margin-bottom: 15px;">🎮 Tahmini FPS (1080p Ultra)</h3>
+        <div class="fps-results" style="display: flex; flex-direction: column; gap: 10px;">
+          <div class="fps-card" style="background: #1e293b; padding: 10px 15px; border-radius: 6px; display: flex; justify-content: space-between; border-left: 4px solid #38bdf8;">
+            <span>Valorant / CS2</span>
+            <strong id="fps-cs" style="color: #f59e0b;">0 FPS</strong>
+          </div>
+          <div class="fps-card" style="background: #1e293b; padding: 10px 15px; border-radius: 6px; display: flex; justify-content: space-between; border-left: 4px solid #38bdf8;">
+            <span>GTA V / PUBG</span>
+            <strong id="fps-gta" style="color: #f59e0b;">0 FPS</strong>
+          </div>
+          <div class="fps-card" style="background: #1e293b; padding: 10px 15px; border-radius: 6px; display: flex; justify-content: space-between; border-left: 4px solid #38bdf8;">
+            <span>Cyberpunk 2077</span>
+            <strong id="fps-cyberpunk" style="color: #f59e0b;">0 FPS</strong>
           </div>
         </div>
-      </section>
+      </div>
+    </div>
+  </div>
+</section>
 
     </main>
   </div>
