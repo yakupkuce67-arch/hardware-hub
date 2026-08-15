@@ -6,7 +6,6 @@ const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
 
 const app = express();
-const PORT = 3000;
 const SECRET_KEY = 'gizli_anahtar_buraya';
 
 app.use(express.json());
