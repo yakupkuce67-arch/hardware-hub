@@ -96,9 +96,10 @@ app.delete('/api/admin/users/:id', authenticateAdmin, (req, res) => {
     });
 });
 
-// PORT tanımını dinamik hale getir
+// PORT tanımını Render'ın ortam değişkenine göre yap
 const PORT = process.env.PORT || 3000;
 
+// Sunucuyu 0.0.0.0 IP'si üzerinde dinlemeye al
 app.listen(PORT, '0.0.0.0', () => {
-    console.log(`Sunucu ${PORT} portunda aktif!`);
+    console.log(`Sunucu ${PORT} portunda başarıyla başlatıldı!`);
 });
