@@ -70,24 +70,25 @@ async function getProtectedData() {
 // 2. Sekme Yönetimi (Tek ve Temiz Mantık)
 function setupTabs() {
   const buttons = document.querySelectorAll(".nav-btn");
+  const allTabs = document.querySelectorAll(".tab-content, .builder-container, .content-section");
 
   buttons.forEach(btn => {
     btn.addEventListener("click", () => {
       const targetTabId = btn.getAttribute("data-target");
 
-      // Bütün butonlardan active sınıfını kaldır
+      // 1. Tüm butonların aktifliğini kaldır
       buttons.forEach(b => b.classList.remove("active"));
       
-      // Bütün sekmeleri gizle (class ve display temizliği)
-      document.querySelectorAll(".tab-content, .content-section, .builder-container").forEach(t => {
+      // 2. Sayfadaki TÜM içerik alanlarını gizle
+      allTabs.forEach(t => {
         t.classList.remove("active");
         t.style.display = "none";
       });
 
-      // Tıklanan butonu aktif yap
+      // 3. Tıklanan butona aktiflik ver
       btn.classList.add("active");
 
-      // Hedef sekmeni aç
+      // 4. Sadece hedef sekmenin görünmesini sağla
       const targetTab = document.getElementById(targetTabId);
       if (targetTab) {
         targetTab.classList.add("active");
