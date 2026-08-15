@@ -13,10 +13,14 @@ app.use(express.json());
 app.use(cors());
 app.use(express.static('public'));
 
-// Veri Tabanı Bağlantısı
+// Veritabanı bağlantısı (Hata almamak için hata yakalama ekliyoruz)
+const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database('./database.db', (err) => {
-    if (err) console.error('Veri tabanı hatası:', err.message);
-    else console.log('SQLite veri tabanına bağlandı.');
+    if (err) {
+        console.error('Veritabanı bağlantı hatası:', err.message);
+    } else {
+        console.log('Veritabanına başarıyla bağlanıldı.');
+    }
 });
 
 db.run(`
@@ -96,10 +100,7 @@ app.delete('/api/admin/users/:id', authenticateAdmin, (req, res) => {
     });
 });
 
-// PORT tanımını Render'ın ortam değişkenine göre yap
 const PORT = process.env.PORT || 3000;
-
-// Sunucuyu 0.0.0.0 IP'si üzerinde dinlemeye al
 app.listen(PORT, '0.0.0.0', () => {
-    console.log(`Sunucu ${PORT} portunda başarıyla başlatıldı!`);
+    console.log(`Sunucu ${PORT} portunda aktif!`);
 });
