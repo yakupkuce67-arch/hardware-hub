@@ -14,8 +14,8 @@ app.use(cors());
 app.use(express.static('public'));
 
 // Veritabanı bağlantısı (Hata almamak için hata yakalama ekliyoruz)
-const sqlite3 = require('sqlite3').verbose();
-const db = new sqlite3.Database('./database.db', (err) => {
+const Database = require('better-sqlite3');
+const db = new Database('./database.db', (err) => {
     if (err) {
         console.error('Veritabanı bağlantı hatası:', err.message);
     } else {
