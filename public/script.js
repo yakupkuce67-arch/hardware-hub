@@ -182,6 +182,35 @@ async function measurePing() {
   }
 }
 
+function calculateSystem() {
+    const cpu = document.getElementById('cpu-select');
+    const gpu = document.getElementById('gpu-select');
+    const ram = document.getElementById('ram-select');
+    const ssd = document.getElementById('ssd-select');
+
+    // Fiyat Hesaplama
+    const totalPrice = parseInt(cpu.value) + parseInt(gpu.value) + parseInt(ram.value) + parseInt(ssd.value);
+    document.getElementById('total-price').innerText = totalPrice.toLocaleString('tr-TR') + ' TL';
+
+    // FPS Hesaplama Tabana Ekran Kartı ve İşlemci Gücünü Alıyoruz
+    const cpuFps = parseInt(cpu.options[cpu.selectedIndex].getAttribute('data-fps') || 0);
+    const gpuFps = parseInt(gpu.options[gpu.selectedIndex].getAttribute('data-fps') || 0);
+
+    if (cpuFps === 0 || gpuFps === 0) {
+        document.getElementById('fps-cs').innerText = '0 FPS';
+        document.getElementById('fps-gta').innerText = '0 FPS';
+        document.getElementById('fps-cyberpunk').innerText = '0 FPS';
+        return;
+    }
+
+    const baseFps = cpuFps + gpuFps;
+
+    // Oyun Bazlı FPS Oranları
+    document.getElementById('fps-cs').innerText = Math.round(baseFps * 2.2) + ' FPS';
+    document.getElementById('fps-gta').innerText = Math.round(baseFps * 1.2) + ' FPS';
+    document.getElementById('fps-cyberpunk').innerText = Math.round(baseFps * 0.65) + ' FPS';
+}
+
 // Başlatıcı
 window.addEventListener("DOMContentLoaded", () => {
   detectHardware();

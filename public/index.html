@@ -36,6 +36,7 @@
         <button class="nav-btn" data-target="tab-network">
           <span>🌐</span> Ağ Hızı & Ping
         </button>
+        <a href="#pc-builder-section" class="nav-item">🖥️ Sistem Toplama & FPS</a>
       </nav>
 
       <!-- Otomatik Cihaz Bilgisi -->
@@ -132,6 +133,80 @@
           <button onclick="measurePing()">Ping Testini Başlat</button>
           <p id="ping-result" style="margin-top: 16px; font-weight: bold; color: #38bdf8;"></p>
         </div>
+        <!-- PC Builder & FPS Calculator Module -->
+<div id="pc-builder-section" class="builder-container">
+    <h2>🖥️ PC Sistem Toplama & FPS Tahmincisi</h2>
+    
+    <div class="builder-grid">
+        <!-- Parça Seçim Alanı -->
+        <div class="components-select-box">
+            <div class="select-group">
+                <label>İşlemci (CPU):</label>
+                <select id="cpu-select" onchange="calculateSystem()">
+                    <option value="0" data-fps="0">İşlemci Seçin</option>
+                    <option value="4200" data-fps="30">Intel Core i5-12400F - 4.200 TL</option>
+                    <option value="6500" data-fps="55">AMD Ryzen 5 7500F - 6.500 TL</option>
+                    <option value="11000" data-fps="85">AMD Ryzen 7 7800X3D - 11.000 TL</option>
+                </select>
+            </div>
+
+            <div class="select-group">
+                <label>Ekran Kartı (GPU):</label>
+                <select id="gpu-select" onchange="calculateSystem()">
+                    <option value="0" data-fps="0">Ekran Kartı Seçin</option>
+                    <option value="9500" data-fps="40">NVIDIA RTX 3060 12GB - 9.500 TL</option>
+                    <option value="16000" data-fps="80">NVIDIA RTX 4060 Ti - 16.000 TL</option>
+                    <option value="28000" data-fps="130">NVIDIA RTX 4070 Super - 28.000 TL</option>
+                </select>
+            </div>
+
+            <div class="select-group">
+                <label>RAM Bellek:</label>
+                <select id="ram-select" onchange="calculateSystem()">
+                    <option value="0">RAM Seçin</option>
+                    <option value="1800">16GB (2x8GB) DDR4 3200MHz - 1.800 TL</option>
+                    <option value="3600">32GB (2x16GB) DDR5 6000MHz - 3.600 TL</option>
+                </select>
+            </div>
+
+            <div class="select-group">
+                <label>Depolama (SSD):</label>
+                <select id="ssd-select" onchange="calculateSystem()">
+                    <option value="0">SSD Seçin</option>
+                    <option value="1600">512GB NVMe M.2 SSD - 1.600 TL</option>
+                    <option value="2900">1TB NVMe M.2 SSD - 2.900 TL</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Özet ve FPS Sonuç Paneli -->
+        <div class="summary-box">
+            <h3>📊 Sistem Özeti</h3>
+            <div class="price-display">
+                <span>Toplam Tutar:</span>
+                <strong id="total-price">0 TL</strong>
+            </div>
+
+            <hr>
+
+            <h3>🎮 Tahmini Oyun FPS Değerleri (1080p Ultra)</h3>
+            <div class="fps-results">
+                <div class="fps-card">
+                    <span>Valorant / CS2</span>
+                    <strong id="fps-cs">0 FPS</strong>
+                </div>
+                <div class="fps-card">
+                    <span>GTA V / PUBG</span>
+                    <strong id="fps-gta">0 FPS</strong>
+                </div>
+                <div class="fps-card">
+                    <span>Cyberpunk 2077</span>
+                    <strong id="fps-cyberpunk">0 FPS</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
       </section>
     </main>
   </div>
