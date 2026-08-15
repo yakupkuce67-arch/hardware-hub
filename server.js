@@ -90,12 +90,12 @@ app.get('/api/admin/users', authenticateAdmin, (req, res) => {
 
 // Admin Kullanıcı Silme Endpoint'i
 app.delete('/api/admin/users/:id', authenticateAdmin, (req, res) => {
-    const userId = req.params.id;
+    const userId = req.params.id; // Parametreden ID'yi alıyoruz
 
     db.run(`DELETE FROM users WHERE id = ?`, [userId], function(err) {
-        if (err) return res.status(500).json({ error: 'Kullanıcı silinemedi.' });
-        if (this.changes === 0) return res.status(404).json({ error: 'Kullanıcı bulunamadı.' });
-
+        if (err) {
+            return res.status(500).json({ error: err.message });
+        }
         res.json({ message: 'Kullanıcı başarıyla silindi.' });
     });
 });
