@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hardware Hub - Akıllı Oyun & Sistem Analizi</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="app-container">
+    <!-- Sol Menü -->
+    <aside class="sidebar">
+      <h2>🎮 Hardware Hub</h2>
+      <nav>
+        <button class="nav-btn active" data-target="tab-auth">
+          <span>👤</span> Hesabım / Auth
+        </button>
+        <button class="nav-btn" data-target="tab-library">
+          <span>📚</span> Oyun Kütüphanem
+        </button>
+        <button class="nav-btn" data-target="tab-checker">
+          <span>🖥️</span> Kaldırır Mı?
+        </button>
+        <button class="nav-btn" data-target="tab-fps">
+          <span>⚡</span> FPS Tahmini
+        </button>
+        <button class="nav-btn" data-target="tab-network">
+          <span>🌐</span> Ağ Hızı & Ping
+        </button>
+      </nav>
+
+      <!-- Otomatik Cihaz Bilgisi -->
+      <div class="system-summary">
+        <small>Algılanan Sistem</small>
+        <p><strong>RAM:</strong> <span id="user-ram">...</span></p>
+        <p><strong>CPU:</strong> <span id="user-cpu">...</span></p>
+        <p><strong>GPU:</strong> <span id="user-gpu">...</span></p>
+      </div>
+    </aside>
+
+    <!-- Ana İçerik -->
+    <main class="main-content">
+
+      <!-- Sekme 1: Kullanıcı Kayıt / Giriş / Korumalı Alan -->
+      <section id="tab-auth" class="tab-content active">
+        <h1>Sistem Kontrol & Auth</h1>
+        <p class="subtitle">Hesabınıza giriş yapın veya kayıt olarak sistem yetkilerinizi doğrulayın.</p>
+
+        <div class="auth-grid">
+          <!-- Kayıt Formu -->
+          <div class="card">
+            <h2>Kayıt Ol</h2>
+            <input type="text" id="reg-username" placeholder="Kullanıcı Adı" class="input-field">
+            <input type="password" id="reg-password" placeholder="Şifre" class="input-field">
+            <button onclick="register()">Kayıt Ol</button>
+          </div>
+
+          <!-- Giriş Formu -->
+          <div class="card">
+            <h2>Giriş Yap</h2>
+            <input type="text" id="login-username" placeholder="Kullanıcı Adı" class="input-field">
+            <input type="password" id="login-password" placeholder="Şifre" class="input-field">
+            <button onclick="login()">Giriş Yap</button>
+          </div>
+        </div>
+
+        <!-- Korumalı Alan Testi -->
+        <div class="card" style="margin-top: 20px;">
+          <h2>🔐 Korumalı Panel Testi (JWT Token)</h2>
+          <p style="font-size:0.85rem; color:#94a3b8; margin-bottom:12px;">
+            Giriş yaptıktan sonra token ile yetkili sunucu verisini çekebilirsiniz.
+          </p>
+          <button onclick="getProtectedData()" style="background-color: #10b981;">Özel Veriyi Getir</button>
+          <p id="protected-response" style="margin-top:12px; font-weight:bold; color:#38bdf8;"></p>
+        </div>
+      </section>
+
+      <!-- Sekme 2: Kütüphane -->
+      <section id="tab-library" class="tab-content">
+        <h1>Oyun Kütüphanesi</h1>
+        <p class="subtitle">Sisteminizin tüm oyunlardaki tahmini performansı:</p>
+        <div id="library-list" class="game-grid"></div>
+      </section>
+
+      <!-- Sekme 3: Kaldırır Mı? -->
+      <section id="tab-checker" class="tab-content">
+        <h1>Sistem Gereksinimi Kontrolü</h1>
+        <div class="card">
+          <select id="game-dropdown-checker" class="input-field"></select>
+          <button onclick="checkSystem()">Kaldırır Mı Check Et</button>
+        </div>
+        <div id="result-card-checker" class="card result hidden">
+          <h2 id="result-title-checker"></h2>
+          <p id="result-details-checker"></p>
+        </div>
+      </section>
+
+      <!-- Sekme 4: FPS Tahmini -->
+      <section id="tab-fps" class="tab-content">
+        <h1>FPS Tahmini</h1>
+        <div class="card">
+          <select id="game-dropdown-fps" class="input-field"></select>
+          <select id="fps-resolution" class="input-field" style="margin-top: 10px;">
+            <option value="1080p">1080p (Full HD)</option>
+            <option value="1440p">1440p (2K)</option>
+            <option value="4k">4K (2160p)</option>
+          </select>
+          <button onclick="calculateFPS()">FPS Hesapla</button>
+        </div>
+        <div id="result-card-fps" class="card result hidden">
+          <h2 id="result-title-fps"></h2>
+          <p id="result-details-fps"></p>
+        </div>
+      </section>
+
+      <!-- Sekme 5: Ağ Hızı & Ping Testi -->
+      <section id="tab-network" class="tab-content">
+        <h1>Ağ Hızı & Ping Testi</h1>
+        <p class="subtitle">Oyun sunucularına olan gecikme ve indirme hızınızı ölçün.</p>
+
+        <div class="card">
+          <h2>Sunucu Gecikmesi (Ping)</h2>
+          <button onclick="measurePing()">Ping Testini Başlat</button>
+          <p id="ping-result" style="margin-top: 16px; font-weight: bold; color: #38bdf8;"></p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
