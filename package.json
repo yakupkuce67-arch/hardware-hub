@@ -1,5 +1,5 @@
 {
-  "name": "sistem-kontrol",
+  "name": "hardware-hub",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -12,10 +12,10 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
-    "bcryptjs": "^3.0.3",
-    "cors": "^2.8.6",
-    "express": "^5.2.1",
-    "jsonwebtoken": "^9.0.3",
-    "sqlite3": "^6.0.1"
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
+    "sqlite3": "^5.1.6"
   }
 }

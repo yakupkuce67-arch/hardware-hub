@@ -96,4 +96,9 @@ app.delete('/api/admin/users/:id', authenticateAdmin, (req, res) => {
     });
 });
 
-app.listen(PORT, () => console.log(`Sunucu http://localhost:${PORT} adresinde aktif!`));
+// PORT tanımını dinamik hale getir
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`Sunucu ${PORT} portunda aktif!`);
+});
