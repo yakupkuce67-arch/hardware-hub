@@ -11,9 +11,116 @@ body {
   min-height: 100vh;
 }
 
+/* ==========================================
+   MINIMALIST BLACK & WHITE TOP NAVBAR STYLES
+   ========================================== */
+.top-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(10, 10, 10, 0.90);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 12px 28px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.7);
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.brand-icon {
+  font-size: 1.2rem;
+  opacity: 0.85;
+  filter: grayscale(100%);
+}
+
+.top-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.top-nav-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: #a3a3a3;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.25s ease-in-out;
+}
+
+.top-nav-item .icon {
+  font-size: 0.95rem;
+  opacity: 0.7;
+  filter: grayscale(100%);
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+/* Hover Efekti - Açık Gri / Beyaz Vurgu */
+.top-nav-item:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.top-nav-item:hover .icon {
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+/* Aktif Sayfa - Mat Siyah & Beyaz Çerçeve */
+.top-nav-item.active {
+  color: #ffffff;
+  background: #262626;
+  border-color: #ffffff;
+  font-weight: 600;
+  box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
+}
+
+.top-nav-item.active .icon {
+  opacity: 1;
+}
+
+/* Navbar Mobil Uyum */
+@media (max-width: 640px) {
+  .top-navbar {
+    flex-direction: column;
+    gap: 12px;
+    padding: 12px 16px;
+  }
+  .top-nav-links {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+
+/* ==========================================
+   GENEL DÜZEN VE SIDEBAR STİLLERİ
+   ========================================== */
 .app-container {
   display: flex;
-  min-height: 100vh;
+  min-height: calc(100vh - 60px);
 }
 
 /* Sol Sidebar */
@@ -86,14 +193,6 @@ body {
   flex-grow: 1;
   padding: 40px;
   max-width: 900px;
-}
-
-.tab-content {
-  display: none;
-}
-
-.tab-content.active {
-  display: block;
 }
 
 h1 {
@@ -191,42 +290,42 @@ button:hover {
 
 /* Kutucuk ve Sayfa Düzeni */
 .info-container {
-    max-width: 800px;
-    margin: 40px auto;
-    padding: 0 20px;
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 0 20px;
 }
 
 .info-card {
-    background: #1e1e2f;
-    border: 1px solid #33334d;
-    border-radius: 12px;
-    padding: 30px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-    color: #e0e0e0;
+  background: #1e1e2f;
+  border: 1px solid #33334d;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  color: #e0e0e0;
 }
 
 .info-card h2 {
-    color: #4f46e5;
-    margin-top: 0;
-    border-bottom: 2px solid #33334d;
-    padding-bottom: 10px;
+  color: #4f46e5;
+  margin-top: 0;
+  border-bottom: 2px solid #33334d;
+  padding-bottom: 10px;
 }
 
 .info-card h3 {
-    color: #38bdf8;
-    margin-top: 20px;
+  color: #38bdf8;
+  margin-top: 20px;
 }
 
 .contact-box {
-    background: #2a2a40;
-    border-left: 4px solid #4f46e5;
-    padding: 15px;
-    border-radius: 6px;
-    margin-top: 15px;
+  background: #2a2a40;
+  border-left: 4px solid #4f46e5;
+  padding: 15px;
+  border-radius: 6px;
+  margin-top: 15px;
 }
 
 /* ==========================================
-   PC Builder & FPS Calculator Styles (GÜNCEL)
+   PC Builder & FPS Calculator Styles
    ========================================== */
 
 /* Sekme Gizleme ve Aktiflik Kuralları */
